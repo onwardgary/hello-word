@@ -150,9 +150,20 @@ app.post('/api/order/lookup', verifyToken, (req, res) => {
     });
   }
 
+  // Flat response structure for Sobot compatibility (no nested 'data' object)
   res.json({
     success: true,
-    data: order
+    orderId: order.orderId,
+    customerName: order.customerName,
+    email: order.email,
+    phone: order.phone,
+    deliveryStatus: order.deliveryStatus,
+    deliveryDate: order.deliveryDate,
+    trackingNumber: order.trackingNumber,
+    shippingAddress: order.shippingAddress,
+    totalAmount: order.totalAmount,
+    orderDate: order.orderDate,
+    lastUpdated: order.lastUpdated
   });
 });
 
